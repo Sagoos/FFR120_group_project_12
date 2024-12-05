@@ -44,7 +44,3 @@ def mutate(agent, mutation_rate=0.01):
 
 def replace_population(agents, new_agents):
     return pd.concat([agents, new_agents]).reset_index(drop=True)
-
-
-def remove_population(agents, num_agents):
-    
