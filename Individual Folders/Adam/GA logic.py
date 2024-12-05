@@ -2,24 +2,12 @@ from random import sample
 import numpy as np
 import pandas as pd
 
-# Number of agents
-num_agents = 400
-
-# Create a DataFrame with random values for each attribute
-agents = pd.DataFrame({
-    "sugar": np.random.uniform(0, 1, num_agents),       # Random sugar values
-    "metabolism": np.random.uniform(0, 1, num_agents), # Random metabolism values
-    "vision": np.random.uniform(0, 1, num_agents),     # Random vision values
-    "fitness": np.zeros(num_agents)                    # Initialize fitness to 0
-})
-
-# Display the first 5 agents
-print(agents.head())
-
 
 def calculate_fitness(agent):
     # A simple fitness function
-    return agent['sugar'] * agent['metabolism'] * agent['vision']
+    # What do we want to have as fitness? 
+    fitness =agent['sugar'] * agent['metabolism'] * agent['vision']
+    return fitness
 
 def select_parents(agents, num_parents):
     parents = []
@@ -50,9 +38,13 @@ def mutate(agent, mutation_rate=0.01):
     if np.random.rand() < mutation_rate:
         # Randomly choose one attribute to mutate
         attribute_to_mutate = np.random.choice(['sugar', 'metabolism', 'vision'])
-        agent[attribute_to_mutate] = np.random.uniform(0, 1)
+        agent[attribute_to_mutate] = np.random.randint(0, 6)
     return agent
 
 
 def replace_population(agents, new_agents):
     return pd.concat([agents, new_agents]).reset_index(drop=True)
+
+
+def remove_population(agents, num_agents):
+    
