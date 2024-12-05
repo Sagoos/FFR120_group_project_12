@@ -56,20 +56,3 @@ def mutate(agent, mutation_rate=0.01):
 
 def replace_population(agents, new_agents):
     return pd.concat([agents, new_agents]).reset_index(drop=True)
-
-
-
-SuSca = np.array([
-    [1, 1, 2, 2, 1],
-    [1, 2, 3, 3, 2],
-    [2, 3, 4, 4, 3],
-    [2, 3, 4, 4, 3],
-    [1, 2, 3, 3, 2]
-])
-visible_positions = [(0, 0), (1, 2), (3, 4)]
-
-best_cell = max(
-           visible_positions,
-           key=lambda pos: SuSca[pos[0], pos[1]]  #indexing wrong here? , I want to compare positions but this indexes intp an array, and then the elements of the array. Resulting in a singel element. 
-       )
-print(best_cell)
